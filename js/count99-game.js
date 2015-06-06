@@ -26,7 +26,7 @@ c99.Tile = (function() {
 	}
 	
 	var p = Tile.prototype = new createjs.Container();
-	
+	//EventDispatcher.initialize(this.prototype);
 	return Tile;
 })();
 
@@ -36,16 +36,24 @@ c99.Game = (function(){
 		
 		this.canvas = document.getElementById('game-canvas');
 		
-		//EaselJS Stage
 		this.stage = new createjs.Stage(this.canvas);
 		
 		var totalTiles = 10;
-		
+	
+		var tileOnPress = function(event) {
+			console.log("Pressed");
+			this.stage.removeChild(event.target);
+			this.stage.update();
+		};	
+	
 		for (var i = totalTiles; i > 0; i--) {
 			var tile = new c99.Tile(i);
 			this.stage.addChild(tile);
 			tile.x = Math.random()*(this.canvas.width - tile.width);
 			tile.y = Math.random()*(this.canvas.height - tile.height);
+			
+			//tile.onPress = (tileOnPress).bind(this);
+			tile.addEventListener("click", tileOnPress.bind(this));
 		}
 		
 		this.stage.update();
