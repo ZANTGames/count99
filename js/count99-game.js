@@ -42,7 +42,7 @@ c99.Game = (function(){
 	
 		var tileOnPress = function(event) {
 			console.log("Pressed");
-			this.stage.removeChild(event.target);
+			this.stage.removeChild(event.target.parent);
 			this.stage.update();
 		};	
 	
