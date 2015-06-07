@@ -38,6 +38,17 @@ c99.Game = (function(){
 		
 		this.stage = new createjs.Stage(this.canvas);
 		
+		this.initGame();
+		
+		var restartButton = document.getElementById('restart-button');
+		restartButton.onclick = (function(event) {
+			var gameOverScene = document.getElementById('gameover');
+			gameOverScene.classList.remove('gameover-appear');
+			this.initGame();
+		}).bind(this);
+	}	
+	
+	Count99Game.prototype.initGame = function() {
 		this.totalTiles = 3;
 		this.nextCount = 1;
 		this.nextCountLabel = document.getElementById('next-count');
@@ -65,8 +76,8 @@ c99.Game = (function(){
 			tile.addEventListener("click", tileOnPress.bind(this));
 		}
 		
-		this.stage.update();
-	}	
+		this.stage.update();	
+	};
 	
 	Count99Game.prototype.gameOver = function() {
 		this.nextCount = 1;
