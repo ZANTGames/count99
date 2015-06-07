@@ -39,11 +39,15 @@ c99.Game = (function(){
 		this.stage = new createjs.Stage(this.canvas);
 		
 		var totalTiles = 10;
+		this.nextCount = 1;
 	
 		var tileOnPress = function(event) {
-			console.log("Pressed");
-			this.stage.removeChild(event.target.parent);
-			this.stage.update();
+			if(event.target.parent.number === this.nextCount) {
+				this.stage.removeChild(event.target.parent);
+				this.stage.update();
+				this.nextCount++;
+				document.getElementById('next-count').textContent = this.nextCount;	
+			}
 		};	
 	
 		for (var i = totalTiles; i > 0; i--) {
