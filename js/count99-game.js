@@ -38,19 +38,24 @@ c99.Game = (function(){
 		
 		this.stage = new createjs.Stage(this.canvas);
 		
-		var totalTiles = 10;
+		this.totalTiles = 3;
 		this.nextCount = 1;
+		this.nextCountLabel = document.getElementById('next-count');
 	
 		var tileOnPress = function(event) {
 			if(event.target.parent.number === this.nextCount) {
 				this.stage.removeChild(event.target.parent);
 				this.stage.update();
 				this.nextCount++;
-				document.getElementById('next-count').textContent = this.nextCount;	
+				this.nextCountLabel.textContent = this.nextCount;	
+				
+				if (this.nextCount > this.totalTiles) {
+					this.gameOver();
+				}
 			}
 		};	
 	
-		for (var i = totalTiles; i > 0; i--) {
+		for (var i = this.totalTiles; i > 0; i--) {
 			var tile = new c99.Tile(i);
 			this.stage.addChild(tile);
 			tile.x = Math.random()*(this.canvas.width - tile.width);
@@ -62,6 +67,14 @@ c99.Game = (function(){
 		
 		this.stage.update();
 	}	
+	
+	Count99Game.prototype.gameOver = function() {
+		this.nextCount = 1;
+		this.nextCountLabel.textContent = this.nextCount;
+		
+		var gameOverScene = document.getElementById('gameover');
+		gameOverScene.classList.add('gameover-appear');
+	};
 	
 	return Count99Game;
 })();
