@@ -43,3 +43,9 @@
 	-moz-transition: top .3s ease-out;
 	transition: top .3s ease-out;
 }
+
+#restart-button {
+	position: relative;
+	top: 120px;
+	color: antiquewhite;
+}
