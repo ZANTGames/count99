@@ -11,7 +11,7 @@ c99.Tile = (function() {
 		shape.graphics.beginStroke("#000");
 		shape.graphics.beginFill("#efefef");
 		
-		shape.graphics.rect(0, 0, this.width, this.height);  //x,y,width,height
+		shape.graphics.rect(0, 0, this.width, this.height);
 		
 		this.addChild(shape);
 		
@@ -26,7 +26,6 @@ c99.Tile = (function() {
 	}
 	
 	var p = Tile.prototype = new createjs.Container();
-	//EventDispatcher.initialize(this.prototype);
 	return Tile;
 })();
 
